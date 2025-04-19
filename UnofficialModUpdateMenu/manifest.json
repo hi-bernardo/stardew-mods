@@ -1,0 +1,10 @@
+﻿{
+  "Name": "Mod Update Menu",
+  "Author": "Cat, Unofficial Update by dphill",
+  "Version": "2.7.0",
+  "Description": "An unofficial update of Mod Update Menu for the latest version of Stardew Valley and SMAPI.",
+  "UniqueID": "cat.modupdatemenu",
+  "EntryDll": "ModUpdateMenu.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": [ "GitHub:Dphill10827/UnofficialModUpdateMenu" ]
+}

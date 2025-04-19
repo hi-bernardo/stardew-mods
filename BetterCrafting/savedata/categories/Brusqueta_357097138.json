@@ -1,0 +1,250 @@
+{
+  "2619957037231074660": {
+    "Cooking": null,
+    "Crafting": [
+      {
+        "Id": "decoration",
+        "Name": "Decoration",
+        "I18nKey": "category.decoration",
+        "UseRules": true,
+        "DynamicRules": [
+          {
+            "Id": "Floors"
+          },
+          {
+            "Id": "Fences"
+          },
+          {
+            "Id": "Furniture"
+          },
+          {
+            "Id": "Light"
+          }
+        ],
+        "Icon": {
+          "Type": "Item",
+          "RecipeName": "Wood Fence",
+          "ItemId": null,
+          "Source": null,
+          "Path": null,
+          "Rect": null,
+          "Scale": 1.0
+        },
+        "Recipes": [
+          "Tub o' Flowers",
+          "Wicked Statue",
+          "Flute Block",
+          "Drum Block",
+          "Wood Sign",
+          "Stone Sign",
+          "Dark Sign",
+          "Text Sign",
+          "Garden Pot",
+          "Scarecrow",
+          "Deluxe Scarecrow",
+          "Statue Of Blessings",
+          "Statue Of The Dwarf King",
+          "Mini-Jukebox"
+        ],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      },
+      {
+        "Id": "fertilizer_seeds",
+        "Name": "Fertilizer and Seeds",
+        "I18nKey": "category.fertilizer_seeds",
+        "UseRules": false,
+        "DynamicRules": null,
+        "Icon": {
+          "Type": "Item",
+          "RecipeName": "Basic Fertilizer",
+          "ItemId": null,
+          "Source": null,
+          "Path": null,
+          "Rect": null,
+          "Scale": 1.0
+        },
+        "Recipes": [
+          "Basic Fertilizer",
+          "Quality Fertilizer",
+          "Deluxe Fertilizer",
+          "Speed-Gro",
+          "Deluxe Speed-Gro",
+          "Hyper Speed-Gro",
+          "Basic Retaining Soil",
+          "Quality Retaining Soil",
+          "Deluxe Retaining Soil",
+          "Tree Fertilizer",
+          "Wild Seeds (Sp)",
+          "Wild Seeds (Su)",
+          "Wild Seeds (Fa)",
+          "Wild Seeds (Wi)",
+          "Ancient Seeds",
+          "Grass Starter",
+          "Blue Grass Starter",
+          "Tea Sapling",
+          "Fiber Seeds",
+          "Mystic Tree Seed"
+        ],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      },
+      {
+        "Id": "consumables",
+        "Name": "Consumables",
+        "I18nKey": "category.consumables",
+        "UseRules": false,
+        "DynamicRules": null,
+        "Icon": {
+          "Type": "Item",
+          "RecipeName": "Field Snack",
+          "ItemId": null,
+          "Source": null,
+          "Path": null,
+          "Rect": null,
+          "Scale": 1.0
+        },
+        "Recipes": [
+          "Field Snack",
+          "Bug Steak",
+          "Life Elixir",
+          "Oil Of Garlic",
+          "Monster Musk",
+          "Fairy Dust",
+          "Warp Totem: Beach",
+          "Warp Totem: Mountains",
+          "Warp Totem: Farm",
+          "Warp Totem: Desert",
+          "Warp Totem: Island",
+          "Rain Totem",
+          "Treasure Totem",
+          "Cookout Kit",
+          "Tent Kit"
+        ],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      },
+      {
+        "Id": "fishing",
+        "Name": "Fishing",
+        "I18nKey": "category.fishing",
+        "UseRules": false,
+        "DynamicRules": null,
+        "Icon": {
+          "Type": "Item",
+          "RecipeName": "Barbed Hook",
+          "ItemId": null,
+          "Source": null,
+          "Path": null,
+          "Rect": null,
+          "Scale": 1.0
+        },
+        "Recipes": [
+          "Bait",
+          "Wild Bait",
+          "Magic Bait",
+          "Deluxe Bait",
+          "Challenge Bait",
+          "Spinner",
+          "Trap Bobber",
+          "Cork Bobber",
+          "Quality Bobber",
+          "Sonar Bobber",
+          "Treasure Hunter",
+          "Dressed Spinner",
+          "Barbed Hook",
+          "Magnet",
+          "Crab Pot"
+        ],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      },
+      {
+        "Id": "machinery",
+        "Name": "Machinery",
+        "I18nKey": "category.machinery",
+        "UseRules": true,
+        "DynamicRules": [
+          {
+            "Id": "Machine"
+          },
+          {
+            "Id": "Sprinkler"
+          },
+          {
+            "Id": "Storage"
+          }
+        ],
+        "Icon": {
+          "Type": "Item",
+          "RecipeName": "Chest",
+          "ItemId": null,
+          "Source": null,
+          "Path": null,
+          "Rect": null,
+          "Scale": 1.0
+        },
+        "Recipes": [],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      },
+      {
+        "Id": "combat_rings",
+        "Name": "Combat and Rings",
+        "I18nKey": "category.combat_rings",
+        "UseRules": false,
+        "DynamicRules": null,
+        "Icon": {
+          "Type": "Item",
+          "RecipeName": "Sturdy Ring",
+          "ItemId": null,
+          "Source": null,
+          "Path": null,
+          "Rect": null,
+          "Scale": 1.0
+        },
+        "Recipes": [
+          "Cherry Bomb",
+          "Bomb",
+          "Mega Bomb",
+          "Sturdy Ring",
+          "Warrior Ring",
+          "Ring of Yoba",
+          "Thorns Ring",
+          "Glowstone Ring",
+          "Iridium Band",
+          "Wedding Ring",
+          "Staircase",
+          "Explosive Ammo"
+        ],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      },
+      {
+        "Id": "miscellaneous",
+        "Name": "Miscellaneous",
+        "I18nKey": "category.misc",
+        "UseRules": false,
+        "DynamicRules": null,
+        "Icon": {
+          "Type": "Texture",
+          "RecipeName": null,
+          "ItemId": null,
+          "Source": "MouseCursors",
+          "Path": null,
+          "Rect": {
+            "X": 50,
+            "Y": 428,
+            "Width": 10,
+            "Height": 10
+          },
+          "Scale": 1.0
+        },
+        "Recipes": [],
+        "UnwantedRecipes": null,
+        "IncludeInMisc": false
+      }
+    ],
+    "Applied": null
+  }
+}

@@ -1,0 +1,5 @@
+{
+    "GlobalConfigSettings:ChangeOnEveryLoad": "Alterar em Cada Carregamento",
+    "GlobalConfigSettings:ChangeOnEveryLoadDescription": "Reatribui configurações globais em cada carregamento de save (e ao entrar em partidas multiplayer) em vez da criação da fazenda."
+  }
+  
