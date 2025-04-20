@@ -1,66 +1,75 @@
-# URL do ZIP no GitHub Releases
-$zipUrl = "https://github.com/hi-bernardo/stardew-mods/releases/download/v1/stardew_mods.zip"
+function Get-StardewModsPath {
+    # Unidades montadas no sistema
+    $drives = Get-PSDrive -PSProvider FileSystem
 
-# Caminho temporário para o ZIP
-$zipPath = "$PWD\stardew_mods.zip"
+    # Caminhos possíveis (Program Files e Program Files (x86))
+    $steamPaths = @(
+        "Program Files\Steam\steamapps\common\Stardew Valley\Mods",
+        "Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods"
+    )
 
-# Baixar o ZIP
-Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath
-
-# Caminho padrão para o diretório de Mods no Steam (Stardew Valley)
-$steamModsDir = "$env:ProgramFiles(x86)\Steam\steamapps\common\Stardew Valley\Mods"
-
-# Verificar se a pasta Mods existe
-if (Test-Path $steamModsDir) {
-    # Se a pasta existir, perguntar ao usuário se está correta
-    $response = Read-Host "A pasta de Mods foi encontrada no caminho padrão: $steamModsDir. Deseja usar essa pasta? (S/N)"
-    
-    if ($response -eq 'S') {
-        # Apagar conteúdo da pasta antes de extrair
-        Write-Host "Apagando os arquivos existentes na pasta..."
-        Remove-Item "$steamModsDir\*" -Recurse -Force
-
-        # Extrair o arquivo ZIP na pasta de Mods
-        Expand-Archive -Path $zipPath -DestinationPath $steamModsDir -Force
-        Write-Host "Conteúdo extraído com sucesso em: $steamModsDir"
-    } else {
-        # Se o usuário não confirmar, criar nova pasta no Downloads
-        $downloadsDir = [System.IO.Path]::Combine($env:USERPROFILE, 'Downloads', 'stardew_mods')
-        Write-Host "Extrair para a pasta: $downloadsDir"
-        
-        # Extrair o ZIP para a pasta no Downloads
-        Expand-Archive -Path $zipPath -DestinationPath $downloadsDir -Force
-        Write-Host "Conteúdo extraído com sucesso em: $downloadsDir"
-    }
-} else {
-    # Caso a pasta de Mods não exista, perguntar onde o usuário deseja extrair
-    $response = Read-Host "A pasta de Mods não foi encontrada no caminho padrão. Deseja selecionar outro diretório para extração? (S/N)"
-    
-    if ($response -eq 'S') {
-        # Solicitar ao usuário o caminho para a pasta
-        $selectedPath = Read-Host "Por favor, insira o caminho completo para a pasta desejada"
-        
-        if (Test-Path $selectedPath) {
-            # Apagar conteúdo da pasta, caso exista
-            Write-Host "Apagando os arquivos existentes na pasta..."
-            Remove-Item "$selectedPath\*" -Recurse -Force
-
-            # Extrair o arquivo ZIP no diretório escolhido
-            Expand-Archive -Path $zipPath -DestinationPath $selectedPath -Force
-            Write-Host "Conteúdo extraído com sucesso em: $selectedPath"
-        } else {
-            Write-Host "O caminho fornecido não existe. Nenhuma ação será realizada."
+    foreach ($drive in $drives) {
+        foreach ($path in $steamPaths) {
+            $fullPath = Join-Path $drive.Root $path
+            if (Test-Path $fullPath) {
+                return $fullPath
+            }
         }
-    } else {
-        # Se o usuário não desejar alterar o diretório, extrair na pasta Downloads
-        $downloadsDir = [System.IO.Path]::Combine($env:USERPROFILE, 'Downloads', 'stardew_mods')
-        Write-Host "Extrair para a pasta: $downloadsDir"
-        
-        # Extrair o ZIP para a pasta no Downloads
-        Expand-Archive -Path $zipPath -DestinationPath $downloadsDir -Force
-        Write-Host "Conteúdo extraído com sucesso em: $downloadsDir"
+    }
+
+    return $null
+}
+
+function Get-DownloadsPath {
+    try {
+        $downloads = [Environment]::GetFolderPath("Downloads")
+        if (-not (Test-Path $downloads)) {
+            throw
+        }
+        return $downloads
+    } catch {
+        $fallback = Join-Path $env:USERPROFILE 'Downloads'
+        if (Test-Path $fallback) {
+            Write-Host "Usando caminho alternativo para Downloads: $fallback"
+            return $fallback
+        } else {
+            throw "Não foi possível localizar a pasta de Downloads."
+        }
     }
 }
 
-# Remover o arquivo ZIP após extração
-Remove-Item $zipPath
+function DownloadAndExtractMod {
+    $downloadUrl = "https://github.com/hi-bernardo/stardew-mods/releases/download/v1/stardew_mods.zip"
+    $downloadsPath = Get-DownloadsPath
+    $zipFilePath = Join-Path $downloadsPath "stardew_mods.zip"
+
+    Write-Host "Baixando mod para: $zipFilePath"
+    Invoke-WebRequest -Uri $downloadUrl -OutFile $zipFilePath
+
+    $modPath = Get-StardewModsPath
+
+    if ($modPath) {
+        Write-Host "Pasta 'Mods' localizada em: $modPath"
+        $userChoice = Read-Host "Deseja sobrescrever o conteúdo da pasta Mods? (S/N)"
+        
+        if ($userChoice -eq "S") {
+            Write-Host "Limpando conteúdo da pasta Mods..."
+            Remove-Item "$modPath\*" -Recurse -Force
+
+            Write-Host "Extraindo mod para: $modPath"
+            Expand-Archive -Path $zipFilePath -DestinationPath $modPath -Force
+            Write-Host "Mod extraído com sucesso para $modPath!"
+        } else {
+            $newPath = Join-Path $downloadsPath "stardew_mods"
+            Write-Host "Extraindo mod para pasta alternativa: $newPath"
+            Expand-Archive -Path $zipFilePath -DestinationPath $newPath -Force
+        }
+    } else {
+        Write-Host "Não foi possível localizar a pasta Mods automaticamente."
+        $fallbackPath = Join-Path $downloadsPath "stardew_mods"
+        Write-Host "Extraindo mod para pasta alternativa: $fallbackPath"
+        Expand-Archive -Path $zipFilePath -DestinationPath $fallbackPath -Force
+    }
+}
+
+DownloadAndExtractMod
